@@ -1,0 +1,18 @@
+services:
+  workspace-host:
+    build:
+      context: repos/images/platform/workspace-host
+      dockerfile: Dockerfile
+    container_name: limespaces-workspace-host
+    privileged: true
+    volumes:
+      - ./run/limespaces:/limespaces # docker socket
+      # Volumes to fix daemon failures (mounting into overlayfs)
+      - limespaces-workspace-host-docker:/var/lib/docker
+      - limespaces-workspace-host-containerd:/var/lib/containerd
+      - limespaces-workspace-host-sysbox:/var/lib/sysbox
+
+volumes:
+  limespaces-workspace-host-docker:
+  limespaces-workspace-host-containerd:
+  limespaces-workspace-host-sysbox:
