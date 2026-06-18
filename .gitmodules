@@ -1,0 +1,3 @@
+[submodule "repos/orchestrator"]
+	path = repos/orchestrator
+	url = https://github.com/Limespaces/limespaces-orchestrator.git
