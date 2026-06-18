@@ -4,3 +4,6 @@
 [submodule "repos/images"]
 	path = repos/images
 	url = https://github.com/Limespaces/limespaces-images
+[submodule "repos/dashboard"]
+	path = repos/dashboard
+	url = https://github.com/Limespaces/limespaces-dashboard.git

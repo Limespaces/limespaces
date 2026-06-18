@@ -12,6 +12,36 @@ services:
       - limespaces-workspace-host-containerd:/var/lib/containerd
       - limespaces-workspace-host-sysbox:/var/lib/sysbox
 
+  orchestrator:
+    tty: true
+    build:
+      context: repos/orchestrator
+      dockerfile: ../images/platform/orchestrator/dev.Dockerfile
+    container_name: limespaces-orchestrator
+    volumes:
+      - "./repos/orchestrator:/app"
+      - "/app/node_modules"
+      - "/app/dist"
+    ports:
+      - "3001:3000"
+    environment:
+      - DASHBOARD_ORIGIN=http://localhost:3000
+
+  dashboard:
+    tty: true
+    build:
+      context: repos/dashboard
+      dockerfile: ../images/platform/dashboard/dev.Dockerfile
+    container_name: limespaces-dashboard
+    volumes:
+      - "./repos/dashboard:/app"
+      - "/app/node_modules"
+      - "/app/.next"
+    ports:
+      - "3000:3000"
+    environment:
+      - ORCHESTRATOR_URL=http://localhost:3001/api
+
 volumes:
   limespaces-workspace-host-docker:
   limespaces-workspace-host-containerd:
