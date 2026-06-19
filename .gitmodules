@@ -7,3 +7,6 @@
 [submodule "repos/dashboard"]
 	path = repos/dashboard
 	url = https://github.com/Limespaces/limespaces-dashboard.git
+[submodule "repos/shared"]
+	path = repos/shared
+	url = https://github.com/Limespaces/limespaces-shared
