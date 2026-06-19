@@ -24,6 +24,8 @@ services:
       - "/app/repos/orchestrator/node_modules"
       - "/app/repos/orchestrator/dist"
       - "/app/repos/shared/node_modules"
+
+      - "./run/limespaces:/var/run/limespaces:ro"
     ports:
       - "3001:3000"
     env_file:
@@ -48,10 +50,27 @@ services:
 
   postgres:
     image: postgres:18
+    container_name: limespaces-postgres
     env_file:
       - ./env/postgres.env
     volumes:
       - ./var/postgres:/var/lib/postgresql
+
+  redis:
+    image: redis:8.8
+    container_name: limespaces-redis
+    volumes:
+      - ./var/redis:/data
+    env_file:
+      - ./env/redis.env
+
+  registry:
+    image: registry:2
+    container_name: limespaces-registry
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./var/registry:/var/lib/registry
 
 volumes:
   limespaces-workspace-host-docker:

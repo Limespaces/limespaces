@@ -1,0 +1,34 @@
+#!/bin/bash
+# @author Gemini 3.5 Flash inside Google Antigravity IDE
+
+set -e
+
+REGISTRY="localhost:5001"
+
+# Check if docker is running
+if ! docker info >/dev/null 2>&1; then
+  echo "Error: Docker is not running or accessible."
+  exit 1
+fi
+
+echo "Building and uploading workspace images to local registry..."
+
+# Iterate through workspaces
+for dir in repos/images/workspaces/*; do
+  if [ -d "$dir" ] && [ -f "$dir/Dockerfile" ]; then
+    name=$(basename "$dir")
+    image_tag="$REGISTRY/limespaces/$name:latest"
+    echo "----------------------------------------"
+    echo "Building workspace image: limespaces/$name"
+    echo "Tagging as: $image_tag"
+    echo "----------------------------------------"
+    docker build -t "$image_tag" "$dir"
+    
+    echo "----------------------------------------"
+    echo "Pushing workspace image: $image_tag"
+    echo "----------------------------------------"
+    docker push "$image_tag"
+  fi
+done
+
+echo "Workspace images built and pushed successfully."
