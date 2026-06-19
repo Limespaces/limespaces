@@ -26,8 +26,8 @@ services:
       - "/app/repos/shared/node_modules"
     ports:
       - "3001:3000"
-    environment:
-      - DASHBOARD_ORIGIN=http://localhost:3000
+    env_file:
+      - ./env/orchestrator.env
 
   dashboard:
     tty: true
@@ -45,6 +45,13 @@ services:
       - "3000:3000"
     env_file:
       - ./env/dashboard.env
+
+  postgres:
+    image: postgres:18
+    env_file:
+      - ./env/postgres.env
+    volumes:
+      - ./var/postgres:/var/lib/postgresql
 
 volumes:
   limespaces-workspace-host-docker:
