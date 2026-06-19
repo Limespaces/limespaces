@@ -2,3 +2,5 @@ run/
 
 *.env
 !*.example.env
+
+node_modules/

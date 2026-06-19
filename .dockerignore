@@ -1,0 +1,12 @@
+node_modules
+**/node_modules
+.next
+**/.next
+dist
+**/dist
+.git
+.gitmodules
+.pnpm-store
+**/.pnpm-store
+run
+**/run

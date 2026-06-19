@@ -15,13 +15,15 @@ services:
   orchestrator:
     tty: true
     build:
-      context: repos/orchestrator
-      dockerfile: ../images/platform/orchestrator/dev.Dockerfile
+      context: .
+      dockerfile: repos/images/platform/orchestrator/dev.Dockerfile
     container_name: limespaces-orchestrator
     volumes:
-      - "./repos/orchestrator:/app"
+      - ".:/app"
       - "/app/node_modules"
-      - "/app/dist"
+      - "/app/repos/orchestrator/node_modules"
+      - "/app/repos/orchestrator/dist"
+      - "/app/repos/shared/node_modules"
     ports:
       - "3001:3000"
     environment:
@@ -30,13 +32,15 @@ services:
   dashboard:
     tty: true
     build:
-      context: repos/dashboard
-      dockerfile: ../images/platform/dashboard/dev.Dockerfile
+      context: .
+      dockerfile: repos/images/platform/dashboard/dev.Dockerfile
     container_name: limespaces-dashboard
     volumes:
-      - "./repos/dashboard:/app"
+      - ".:/app"
       - "/app/node_modules"
-      - "/app/.next"
+      - "/app/repos/dashboard/node_modules"
+      - "/app/repos/dashboard/.next"
+      - "/app/repos/shared/node_modules"
     ports:
       - "3000:3000"
     env_file:

@@ -1,0 +1,6 @@
+packages:
+  - "./repos/*"
+allowBuilds:
+  '@swc/core': true
+  sharp: true
+  unrs-resolver: true
