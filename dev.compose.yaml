@@ -12,6 +12,8 @@ services:
       - limespaces-workspace-host-containerd:/var/lib/containerd
       - limespaces-workspace-host-sysbox:/var/lib/sysbox
 
+      - ./repos/images:/app/repos/images:ro
+
   orchestrator:
     tty: true
     build:
