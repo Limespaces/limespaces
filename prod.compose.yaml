@@ -1,0 +1,74 @@
+services:
+  # orchestrator:
+  #   tty: true
+  #   build:
+  #     context: .
+  #     dockerfile: repos/images/platform/orchestrator/dev.Dockerfile
+  #   container_name: limespaces-orchestrator
+  #   volumes:
+  #     - ".:/app"
+  #     - "/app/node_modules"
+  #     - "/app/repos/orchestrator/node_modules"
+  #     - "/app/repos/orchestrator/dist"
+  #     - "/app/repos/shared/node_modules"
+
+  #     - "/var/run/docker.sock:/var/run/docker.sock"
+  #   ports:
+  #     - "3001:3000"
+  #   env_file:
+  #     - ./env/orchestrator.env
+  #   networks:
+  #     - limespaces-net
+
+  # dashboard:
+  #   tty: true
+  #   build:
+  #     context: .
+  #     dockerfile: repos/images/platform/dashboard/dev.Dockerfile
+  #   container_name: limespaces-dashboard
+  #   volumes:
+  #     - ".:/app"
+  #     - "/app/node_modules"
+  #     - "/app/repos/dashboard/node_modules"
+  #     - "/app/repos/dashboard/.next"
+  #     - "/app/repos/shared/node_modules"
+  #   ports:
+  #     - "3000:3000"
+  #   env_file:
+  #     - ./env/dashboard.env
+  #   networks:
+  #     - limespaces-net
+
+  # postgres:
+  #   image: postgres:18
+  #   container_name: limespaces-postgres
+  #   env_file:
+  #     - ./env/postgres.env
+  #   volumes:
+  #     - ./var/postgres:/var/lib/postgresql
+  #   networks:
+  #     - limespaces-net
+
+  # redis:
+  #   image: redis:8.8
+  #   container_name: limespaces-redis
+  #   volumes:
+  #     - ./var/redis:/data
+  #   env_file:
+  #     - ./env/redis.env
+  #   networks:
+  #     - limespaces-net
+
+  # registry:
+  #   image: registry:2
+  #   container_name: limespaces-registry
+  #   ports:
+  #     - "5001:5000"
+  #   volumes:
+  #     - ./var/registry:/var/lib/registry
+  #   networks:
+  #     - limespaces-net
+
+networks:
+  limespaces-net:
+    name: limespaces-net
