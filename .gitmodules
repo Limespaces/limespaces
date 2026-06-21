@@ -10,3 +10,6 @@
 [submodule "repos/shared"]
 	path = repos/shared
 	url = https://github.com/Limespaces/limespaces-shared
+[submodule "repos/supervisor"]
+	path = repos/supervisor
+	url = https://github.com/Limespaces/limespaces-supervisor.git
