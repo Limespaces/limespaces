@@ -6,15 +6,7 @@ services:
       dockerfile: repos/images/platform/orchestrator/prod.Dockerfile
     container_name: limespaces-orchestrator
     volumes:
-      - ".:/app" # insecure probably, fix later
-      - "/app/node_modules"
-      - "/app/repos/orchestrator/node_modules"
-      - "/app/repos/orchestrator/dist"
-      - "/app/repos/shared/node_modules"
-
       - "/var/run/docker.sock:/var/run/docker.sock" # insecure, ensure that the container is trusted
-    # ports:
-    #   - "3001:3000"
     env_file:
       - ./env/orchestrator.env
     networks:
