@@ -23,7 +23,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik_proxy"
-      - "traefik.http.routers.limespaces-orchestrator.rule=Host(`limespaces.martinpetr.dev`)"
+      - "traefik.http.routers.limespaces-orchestrator.rule=Host(`api.limespaces.martinpetr.dev`)"
       - "traefik.http.services.limespaces-orchestrator.loadbalancer.server.port=3000"
 
   # dashboard:
