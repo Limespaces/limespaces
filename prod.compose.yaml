@@ -1,24 +1,30 @@
 services:
-  # orchestrator:
-  #   tty: true
-  #   build:
-  #     context: .
-  #     dockerfile: repos/images/platform/orchestrator/dev.Dockerfile
-  #   container_name: limespaces-orchestrator
-  #   volumes:
-  #     - ".:/app"
-  #     - "/app/node_modules"
-  #     - "/app/repos/orchestrator/node_modules"
-  #     - "/app/repos/orchestrator/dist"
-  #     - "/app/repos/shared/node_modules"
+  orchestrator:
+    tty: true
+    build:
+      context: . # insecure probably, fix later
+      dockerfile: repos/images/platform/orchestrator/prod.Dockerfile
+    container_name: limespaces-orchestrator
+    volumes:
+      - ".:/app" # insecure probably, fix later
+      - "/app/node_modules"
+      - "/app/repos/orchestrator/node_modules"
+      - "/app/repos/orchestrator/dist"
+      - "/app/repos/shared/node_modules"
 
-  #     - "/var/run/docker.sock:/var/run/docker.sock"
-  #   ports:
-  #     - "3001:3000"
-  #   env_file:
-  #     - ./env/orchestrator.env
-  #   networks:
-  #     - limespaces-net
+      - "/var/run/docker.sock:/var/run/docker.sock" # insecure, ensure that the container is trusted
+    # ports:
+    #   - "3001:3000"
+    env_file:
+      - ./env/orchestrator.env
+    networks:
+      - limespaces-net
+      - traefik_proxy # insecure, fix later
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik_proxy"
+      - "traefik.http.routers.limespaces-orchestrator.rule=Host(`limespaces.martinpetr.dev`)"
+      - "traefik.http.services.limespaces-orchestrator.loadbalancer.server.port=3000"
 
   # dashboard:
   #   tty: true
@@ -72,3 +78,5 @@ services:
 networks:
   limespaces-net:
     name: limespaces-net
+  traefik_proxy:
+    external: true
