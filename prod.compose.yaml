@@ -49,15 +49,15 @@ services:
   #   networks:
   #     - limespaces-net
 
-  # redis:
-  #   image: redis:8.8
-  #   container_name: limespaces-redis
-  #   volumes:
-  #     - ./var/redis:/data
-  #   env_file:
-  #     - ./env/redis.env
-  #   networks:
-  #     - limespaces-net
+  redis:
+    image: redis:8.8
+    container_name: limespaces-redis
+    volumes:
+      - ./var/redis:/data
+    env_file:
+      - ./env/redis.env
+    networks:
+      - limespaces-net
 
   registry:
     image: registry:2
