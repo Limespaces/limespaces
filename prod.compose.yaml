@@ -59,15 +59,15 @@ services:
   #   networks:
   #     - limespaces-net
 
-  # registry:
-  #   image: registry:2
-  #   container_name: limespaces-registry
-  #   ports:
-  #     - "5001:5000"
-  #   volumes:
-  #     - ./var/registry:/var/lib/registry
-  #   networks:
-  #     - limespaces-net
+  registry:
+    image: registry:2
+    container_name: limespaces-registry
+    ports:
+      - "127.0.0.1:5001:5000"
+    volumes:
+      - ./var/registry:/var/lib/registry
+    networks:
+      - limespaces-net
 
 networks:
   limespaces-net:
