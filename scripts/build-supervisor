@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd repos/supervisor
+
+go build -o bin/limespaces-supervisor src/main.go
